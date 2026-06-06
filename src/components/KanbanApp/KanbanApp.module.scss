@@ -1,0 +1,67 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: $space-xl;
+
+  @include tablet-down {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  @include mobile {
+    padding: $space-lg $space-md;
+    gap: $space-md;
+  }
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.logo {
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $color-primary, #8b5cf6);
+  color: #fff;
+  font-size: 1.5rem;
+  box-shadow: $shadow-md;
+}
+
+.heading {
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $color-text;
+}
+
+.subheading {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
+
+.main {
+  flex: 1;
+  min-height: 0; // allow the board to own its scroll
+}
+
+.loading {
+  @include flex-center;
+  height: 100%;
+  color: $color-text-muted;
+  font-size: 0.9375rem;
+}

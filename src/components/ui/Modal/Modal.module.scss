@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $space-2xl $space-lg;
+  overflow-y: auto;
+  animation: fade-in $transition-base;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  animation: slide-up $transition-base;
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+.header {
+  @include flex-between;
+  padding: $space-xl $space-xl $space-lg;
+  border-bottom: 1px solid $color-border;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.close {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: $radius-sm;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: background $transition-fast, color $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: $color-text;
+  }
+}
+
+.body {
+  padding: $space-xl;
+}
+
+.footer {
+  @include flex-between;
+  gap: $space-md;
+  padding: $space-lg $space-xl $space-xl;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}

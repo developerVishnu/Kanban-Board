@@ -1,0 +1,143 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  padding: $space-md $space-md $space-md $space-lg;
+  background: $color-card;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  cursor: grab;
+  overflow: hidden;
+  transition: box-shadow $transition-fast, transform $transition-fast;
+
+  // Priority accent stripe (color injected via --accent).
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--accent);
+  }
+
+  // Subtle priority tint across the card surface.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.dragging {
+  opacity: 0.4;
+}
+
+.overlay {
+  cursor: grabbing;
+  box-shadow: $shadow-lg;
+  transform: rotate(2deg);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-sm;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: $color-text-dark;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.description {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: $color-text-dark-muted;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.descriptionExpanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.readMore {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  line-height: 1.4;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.footer {
+  @include flex-between;
+  margin-top: $space-xs;
+}
+
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  min-width: 0;
+}
+
+.avatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.assigneeName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-text-dark;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  color: $color-text-dark-muted;
+}

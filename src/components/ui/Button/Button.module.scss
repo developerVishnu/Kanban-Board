@@ -1,0 +1,90 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.button {
+  @include flex-center;
+  gap: $space-sm;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background $transition-fast, border-color $transition-fast,
+    transform $transition-fast, opacity $transition-fast;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Sizes --------------------------------------------------------
+.sm {
+  padding: $space-xs $space-md;
+  font-size: 0.8125rem;
+}
+
+.md {
+  padding: $space-sm $space-lg;
+  font-size: 0.9375rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.icon {
+  @include flex-center;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+// Variants -----------------------------------------------------
+.primary {
+  background: $color-primary;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+  }
+}
+
+.secondary {
+  background: $color-surface-raised;
+  color: $color-text;
+  border-color: $color-border;
+
+  &:hover:not(:disabled) {
+    background: color.adjust($color-surface-raised, $lightness: 6%);
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $color-text-muted;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.06);
+    color: $color-text;
+  }
+}
+
+.danger {
+  background: transparent;
+  color: $color-danger;
+  border-color: rgba(239, 68, 68, 0.4);
+
+  &:hover:not(:disabled) {
+    background: $color-danger;
+    color: #fff;
+  }
+}

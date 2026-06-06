@@ -1,0 +1,68 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Expose tokens as CSS custom properties for runtime use -------
+:root {
+  --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-card: #{$color-card};
+  --color-text: #{$color-text};
+  --color-primary: #{$color-primary};
+
+  --priority-low: #{$priority-low};
+  --priority-medium: #{$priority-medium};
+  --priority-high: #{$priority-high};
+  --priority-urgent: #{$priority-urgent};
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-sans;
+  background: $color-bg;
+  background-image: radial-gradient(
+      circle at 15% 0%,
+      rgba(99, 102, 241, 0.12),
+      transparent 40%
+    ),
+    radial-gradient(circle at 85% 100%, rgba(16, 185, 129, 0.08), transparent 45%);
+  color: $color-text;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+// While dragging, suppress text selection across the board
+body.dnd-dragging {
+  user-select: none;
+  cursor: grabbing;
+}

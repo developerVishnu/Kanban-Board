@@ -1,0 +1,44 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-lg;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  @include flex-between;
+  width: 100%;
+  gap: $space-md;
+}
+
+.footerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-left: auto;
+}
+
+.confirm {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
